@@ -1,0 +1,35 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+.title {
+    color: whitesmoke;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 50px;
+    font-family: fantasy;
+}
+
+.game-screen {
+    position: relative;
+    margin: 5px auto;
+    width: 600px;
+    height: 600px;
+    border: 2px solid gray;
+    color: white;
+    background-color: white;
+}
+
+.score-board { 
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 610px;
+    height: 100px;
+    width: 600px;
+    font-size: 40px;
+    color: white;
+    font-family: 'montserrat'
+}
+
