@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Food from './Food';
 
-const randomFood = () => {
-  return [4,0]
+var randomFood = () => {
+  /*determines random values from 1-98. used to be 100 but the food dot would 
+  move out the game screen at 99*/
+  let x = Math.floor((Math.random() * 98));
+  let y = Math.floor((Math.random() * 98));
+  /*food[0] and food[1]*/
+  return [x,y]
 }
 
 var initialState = {
   speed: 100,
   score: 0,
   direction: 'RIGHT',
+  /*determines where food spawns on load*/
   food: randomFood(),
   snakeStart: 0,
 }
-
- 
-
 
 export default class App extends Component {
   
@@ -67,7 +70,8 @@ export default class App extends Component {
         <div className='title'>
           ULTRA SNAKE
           <div className='game-screen'>
-            <Food dot={this.state.food} />
+            {/* this allows randomFood to show up as a block instead of a number */}
+            <Food food={this.state.food} />
               <div className='score-board'>
                 <div className='score'>
                   Score: {this.state.score}
