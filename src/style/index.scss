@@ -17,9 +17,9 @@ html,body {
     margin: 5px auto;
     width: 600px;
     height: 600px;
-    border: 2px solid gray;
+    border: 4px solid gray;
     color: white;
-    background-color: white;
+    background-color: rgb(165, 165, 165);
 }
 
 .score-board { 
@@ -32,4 +32,11 @@ html,body {
     color: white;
     font-family: 'montserrat'
 }
+
+.snake-food {
+    position: absolute;
+    width: 2%;
+    height: 2%;
+    background: red;
+  }
 
