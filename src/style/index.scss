@@ -26,7 +26,6 @@ html,body {
     display: flex;
     justify-content: space-evenly;
     padding-top: 610px;
-    height: 100px;
     width: 600px;
     font-size: 40px;
     color: white;
@@ -38,6 +37,7 @@ html,body {
     width: 2%;
     height: 2%;
     background: red;
+    border: 1px solid black;
 }
 
 .snake {
@@ -45,4 +45,5 @@ html,body {
     width: 2%;
     height: 2%;
     background-color: #36fc2f;
+    border: 1px solid black;
 }
