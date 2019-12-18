@@ -27,10 +27,20 @@ html,body {
     justify-content: space-evenly;
     padding-top: 610px;
     width: 600px;
-    font-size: 40px;
+    font-size: 35px;
     color: white;
-    font-family: 'montserrat'
+    font-family: 'montserrat';
 }
+
+.snake {
+    position: absolute;
+    width: 2%;
+    height: 2%;
+    background: #36fc2f;
+    border: 1px solid black;
+    z-index: 1
+}
+
 
 .snake-food {
     position: absolute;
@@ -38,12 +48,6 @@ html,body {
     height: 2%;
     background: red;
     border: 1px solid black;
+    z-index: 2
 }
 
-.snake {
-    position: absolute;
-    width: 2%;
-    height: 2%;
-    background-color: #36fc2f;
-    border: 1px solid black;
-}

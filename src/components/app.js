@@ -3,12 +3,11 @@ import Axios from 'axios';
 import Food from './Food';
 import Snake from './Snake';
 
+/*determines random values from 1-98 on variables x and y, which are substituted
+  by top and left in food.js.*/
 var spawnFood = () => {
-  /*determines random values from 1-98 on variables x and y, which are substituted
-  by top and left in food.js. 
-  
-  the algorithm is so easy even i could do it, the board goes from 0 - 100
-  i want an even number because odd values in X,Y make the snake+food 
+  /*an algorithm so easy even i could do it, the the snake + goes from 0% - 100% on the board 
+  for top/left. i want an even number because odd values in X,Y make the snake+food 
   look off in-game, so i take a range from 0 to 49 and then it multiply by 2*/
   let x = Math.floor(Math.random() * 49)
   let y = Math.floor(Math.random() * 49)
@@ -17,10 +16,12 @@ var spawnFood = () => {
 }
 
 let initialState = {
-  /*substitutes in for setInterval*/
+  /*shows up on the game screen*/
   speed: 1,
-  actualSpeed: 100,
+  /*does not show up on the game screen. substitutes for setInterval*/
+  actualSpeed: 200,
   score: 0,
+  /*determines how snake moves when game starts*/
   direction: 'RIGHT',
   /*determines where food spawns on load*/
   food: spawnFood(),
@@ -37,8 +38,15 @@ export default class App extends Component {
     document.onkeydown = this.onKeyDown;
   }
 
+  componentDidUpdate() {
+    this.eatFood();
+  }
+
+
   onKeyDown = (e) => {
-    /*window.event lets the window record the direction state change*/
+    /*window.event lets the window record the direction state change. key codes
+    correspond to arrows on the keyboard. really easy to change it to say, WASD
+    if you wanted to*/
     e = e || window.event;
     switch (e.keyCode) {
       case 38:
@@ -58,7 +66,10 @@ export default class App extends Component {
 
   /* takes snake, makes new array, takes elements of snake
   and adds them depending on direction. it functions as a snake by having it
-  constantly update the function*/
+  constantly update the function
+  
+  basically, i am just taking the div that contains the little block that
+  i call the snake and moving it.*/
   moveSnake = () => {
     if (this.state.direction === 'RIGHT') {
       let newSnake = [...this.state.snake];
@@ -113,6 +124,18 @@ export default class App extends Component {
     }
   }
 
+  /* simple code, if the snake head and the food have the same left & right values, it spawns another
+  food div. then the snake expand function plays*/
+  eatFood() {
+    let head = this.state.snake;
+    let food = this.state.food;
+    if (head[0] == food[0] && head[1] == food[1]) {
+      this.setState({
+        food: spawnFood()
+      })
+    }
+  }
+
   gameOver() {
 
   }
@@ -126,6 +149,8 @@ export default class App extends Component {
             representing it*/}
             <Snake snakeDots={this.state.snake}/>
             {/*start of snake tail. just makes it look nicer*/}
+            <Snake snakeDots={this.state.snake}/>
+            <Snake snakeDots={this.state.snake}/>
             {/* this allows randomFood to show up as a block. without this, it just
             spawns a random number physically on the game board */}
             <Food foodDot={this.state.food} />
