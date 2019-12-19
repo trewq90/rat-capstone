@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
 import Food from './Food';
 import Rat from './rat';
+
+/* rules:
+
+get cheese
+
+survive */
+
 
 /*determines random values from 1-98 on variables x and y, which are substituted
   by top and left in food.js. it wouldn't work if i put it anywhere else, so its at the top*/
