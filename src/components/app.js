@@ -44,7 +44,7 @@ export default class App extends Component {
 
   componentDidMount() {
     this.interval = setInterval(this.moverat, this.state.actualSpeed)
-    fetch(`http://127.0.0.1:5000/item/get`, {method: "GET"})
+    fetch(`https://ds-capstone-backend.herokuapp.com/item/get`, {method: "GET"})
     .then(response => response.json())
     .then(data => {
       let specialFood = data[1];
@@ -69,7 +69,7 @@ export default class App extends Component {
   }
 
   handleDelayChange = (e) => {
-    if (this.state.actualSpeed > 30) {
+    if (this.state.actualSpeed > 10) {
       this.setState({ 
         actualSpeed: Number(this.state.actualSpeed - 20),
         speed: this.state.speed + 1
