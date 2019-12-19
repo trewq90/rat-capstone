@@ -21,12 +21,6 @@ var spawnFood = () => {
   return [x*2,y*2]
 }
 
-const port = process.env.PORT || 8000;
-
-server.listen(port, () => {
-  console.log("App is running on port " + port);
-});
-
 let initialState = {
   /*shows up on the game screen*/
   speed: 1,
