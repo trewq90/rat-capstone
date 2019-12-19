@@ -68,8 +68,10 @@ export default class App extends Component {
     clearInterval(this.interval);
   }
 
+  /*speeds up rat*/
+
   handleDelayChange = (e) => {
-    if (this.state.actualSpeed > 10) {
+    if (this.state.actualSpeed > 30) {
       this.setState({ 
         actualSpeed: Number(this.state.actualSpeed - 20),
         speed: this.state.speed + 1
