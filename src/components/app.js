@@ -59,7 +59,7 @@ export default class App extends Component {
   handleDelayChange = (e) => {
     if (this.state.actualSpeed > 30) {
       this.setState({ 
-        actualSpeed: Number(this.state.actualSpeed - 30),
+        actualSpeed: Number(this.state.actualSpeed - 15),
         speed: this.state.speed + 1
        })
     }  
@@ -206,7 +206,6 @@ export default class App extends Component {
             {/*sets up starter coordinates of snake, as well as the block 
             representing it*/}
             <Snake snakeDots={this.state.snake[0]}/>
-            <Tail snakeDots={[...this.state.snake]}/>
             {/* this allows randomFood to show up as a block. without this, it just
             spawns a random number physically on the game board */}
             <Food foodDot={this.state.food} />
@@ -215,7 +214,7 @@ export default class App extends Component {
                   Score: {this.state.score}
                 </div>
                 <div className='speed'>
-                  Speed: {this.state.speed} snakes p/h
+                  Speed: {this.state.speed} snakes p/h!!
                 </div>
               </div>
           </div>
