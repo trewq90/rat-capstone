@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Food from './Food';
-import Snake from './Snake';
+import Rat from './rat';
 
 /*determines random values from 1-98 on variables x and y, which are substituted
   by top and left in food.js. it wouldn't work if i put it anywhere else, so its at the top*/
 var spawnFood = () => {
-  /*an algorithm so easy even i could do it, the the snake + food divs go from 0% - 100% on the board 
-  for top/left. i want an even number because odd values in X,Y make the snake+food 
+  /*an algorithm so easy even i could do it, the the rat + food divs go from 0% - 100% on the board 
+  for top/left. i want an even number because odd values in X,Y make the rat+food 
   look off in-game, so i take a range from 0 to 49 and then it multiply by 2*/
   let x = Math.floor(Math.random() * 49)
   let y = Math.floor(Math.random() * 49)
@@ -23,13 +23,14 @@ let initialState = {
   /*does not show up on the game screen. substitutes for setInterval*/
   actualSpeed: 200,
   score: 0,
-  /*determines how snake moves when game starts*/
+  /*determines how rat moves when game starts*/
   direction: 'RIGHT',
-  /*snake starts here at these top/left cordinates which are found in snake.js*/
-  snake: 
+  /*rat starts here at these top/left cordinates which are found in rat.js*/
+  rat: 
   [[50,50],[48,50]],
   /*top/left coordinates that determine where food spawns*/
   food: spawnFood(),
+  specialFood: spawnFood()
   
 }
 
@@ -38,7 +39,15 @@ export default class App extends Component {
   state = initialState
 
   componentDidMount() {
-    this.interval = setInterval(this.moveSnake, this.state.actualSpeed)
+    this.interval = setInterval(this.moverat, this.state.actualSpeed)
+    fetch(`http://127.0.0.1:5000/item/get`, {method: "GET"})
+    .then(response => response.json())
+    .then(data => {
+      let specialFood = data[1];
+      this.setState({
+        specialFood: specialFood[2],
+      })
+    })
     document.onkeydown = this.onKeyDown;
   }
 
@@ -47,7 +56,7 @@ export default class App extends Component {
     this.hitBorder();
     if (prevState.actualSpeed !== this.state.actualSpeed) {
       clearInterval(this.interval);
-      this.interval = setInterval(this.moveSnake, this.state.actualSpeed);
+      this.interval = setInterval(this.moverat, this.state.actualSpeed);
     }
   }
   
@@ -85,77 +94,77 @@ export default class App extends Component {
     }
   }
 
-  /* takes snake, makes new array, takes elements of snake
-  and adds them depending on direction. it functions as a snake by having it
+  /* takes rat, makes new array, takes elements of rat
+  and adds them depending on direction. it functions as a rat by having it
   constantly update the function. because its a nested array, i had to play with the indexes a lot.
   
   basically, i am just taking the div that contains the little block that
-  i call the snake and moving it.*/
-  moveSnake = () => {
+  i call the rat and moving it.*/
+  moverat = () => {
     if (this.state.direction === 'RIGHT') 
     {
-      let newSnake = this.state.snake  
-      /* new snake = [[50,50]] */
-      let cutSnake = newSnake[0]
-      let movedSnakeX = cutSnake[0] 
-      let movedSnakeY = cutSnake[1]  
-      movedSnakeX += 2
-      let finalSnake = [movedSnakeX,movedSnakeY]
-      newSnake[0] = finalSnake
+      let newrat = this.state.rat  
+      /* new rat = [[50,50]] */
+      let cutrat = newrat[0]
+      let movedratX = cutrat[0] 
+      let movedratY = cutrat[1]  
+      movedratX += 2
+      let finalrat = [movedratX,movedratY]
+      newrat[0] = finalrat
       this.setState({
-        snake: newSnake
+        rat: newrat
       })
     } 
     
     else if (this.state.direction === 'LEFT') 
     {
-      let newSnake = this.state.snake
-      /* new snake = [[50,50]] */
-      let cutSnake = newSnake[0]
-      let movedSnakeX = cutSnake[0] 
-      let movedSnakeY = cutSnake[1]  
-      movedSnakeX -= 2
-      let finalSnake = [movedSnakeX,movedSnakeY]
-      newSnake[0] = finalSnake
+      let newrat = this.state.rat
+      /* new rat = [[50,50]] */
+      let cutrat = newrat[0]
+      let movedratX = cutrat[0] 
+      let movedratY = cutrat[1]  
+      movedratX -= 2
+      let finalrat = [movedratX,movedratY]
+      newrat[0] = finalrat
       this.setState({
-        snake: newSnake
+        rat: newrat
       })
     } 
     else if (this.state.direction === 'UP') 
     {
-      let newSnake = this.state.snake
-      /* new snake = [[50,50]] */
-      let cutSnake = newSnake[0]
-      let movedSnakeX = cutSnake[0] 
-      let movedSnakeY = cutSnake[1]  
-      movedSnakeY -= 2
-      let finalSnake = [movedSnakeX,movedSnakeY]
-      newSnake[0] = finalSnake
+      let newrat = this.state.rat
+      /* new rat = [[50,50]] */
+      let cutrat = newrat[0]
+      let movedratX = cutrat[0] 
+      let movedratY = cutrat[1]  
+      movedratY -= 2
+      let finalrat = [movedratX,movedratY]
+      newrat[0] = finalrat
       this.setState({
-        snake: newSnake
+        rat: newrat
       })
     } 
     else if (this.state.direction === 'DOWN') 
     {
-      let newSnake = this.state.snake
-      /* new snake = [[50,50]] */
-      let cutSnake = newSnake[0]
-      let movedSnakeX = cutSnake[0] 
-      let movedSnakeY = cutSnake[1]  
-      movedSnakeY += 2
-      let finalSnake = [movedSnakeX,movedSnakeY]
-      newSnake[0] = finalSnake
+      let newrat = this.state.rat
+      /* new rat = [[50,50]] */
+      let cutrat = newrat[0]
+      let movedratX = cutrat[0] 
+      let movedratY = cutrat[1]  
+      movedratY += 2
+      let finalrat = [movedratX,movedratY]
+      newrat[0] = finalrat
       this.setState({
-        snake: newSnake
+        rat: newrat
       })
     } 
   }
 
-  /* simple code, if the snake head which is set at snake[0] 
+  /* simple code, if the rat head which is set at rat[0] 
   and the food have the same left & top values, it spawns anothe
-  food div. then the snake expand function plays*/
+  food div. then the rat expand function plays*/
   eatFood() {
-    let head = this.state.snake[0];
+    let head = this.state.rat[0];
     let food = this.state.food;
     if (head[0] == food[0] && head[1] == food[1]) {
       this.setState({
@@ -166,20 +175,12 @@ export default class App extends Component {
     }
   }
 
-  expandSnake() {
-    let newSnake = [...this.state.snake];
-    newSnake.unshift([])
-    this.setState({
-      snake: newSnake
-    })
-  }
-
   addScore() {
     this.state.score = this.state.score + this.state.speed * 100
   }
-  /* If snake divs go outside 100, it has hit the border, triggering a game over */
+  /* If rat divs go outside 100, it has hit the border, triggering a game over */
   hitBorder() {
-    let head = this.state.snake[0]
+    let head = this.state.rat[0]
     if (head[0] >= 100 || head[1] >= 100 || head[0] < 0 || head[1] < 0) {
     this.gameOver()
     }
@@ -188,7 +189,7 @@ export default class App extends Component {
   gameOver() {
     alert(`You lost! Your score is ${this.state.score}.`)
     this.setState({
-      snake: [[50,50],[48,50]],
+      rat: [[50,50],[48,50]],
       score: 0,
       food: spawnFood(),
       direction: 'RIGHT',
@@ -200,11 +201,11 @@ export default class App extends Component {
     render() {
       return (
         <div className='title'>
-          QUICK SNAKE
+          RAT
           <div className='game-screen'>
-            {/*sets up starter coordinates of snake, as well as the block 
+            {/*sets up starter coordinates of rat, as well as the block 
             representing it*/}
-            <Snake snakeDots={this.state.snake[0]}/>
+            <Rat ratDots={this.state.rat[0]}/>
             {/* this allows randomFood to show up as a block. without this, it just
             spawns a random number physically on the game board */}
             <Food foodDot={this.state.food} />
@@ -213,7 +214,7 @@ export default class App extends Component {
                   Score: {this.state.score}
                 </div>
                 <div className='speed'>
-                  Speed: {this.state.speed} snakes p/h!!
+                  Speed: {this.state.speed} rats p/h!!
                 </div>
               </div>
           </div>

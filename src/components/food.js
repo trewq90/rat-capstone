@@ -12,6 +12,6 @@ export default (props) => {
   return (
     /*the entire code above is substituted into style, and now it takes
     interpolation for food in app.js*/
-    <div className="snake-food" style={style}></div>
+    <div className="rat-food" style={style}></div>
   )
 }
