@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Food from './Food';
 import Snake from './Snake';
-import Tail from './tail'
 
 /*determines random values from 1-98 on variables x and y, which are substituted
   by top and left in food.js. it wouldn't work if i put it anywhere else, so its at the top*/
@@ -59,7 +58,7 @@ export default class App extends Component {
   handleDelayChange = (e) => {
     if (this.state.actualSpeed > 30) {
       this.setState({ 
-        actualSpeed: Number(this.state.actualSpeed - 15),
+        actualSpeed: Number(this.state.actualSpeed - 20),
         speed: this.state.speed + 1
        })
     }  
@@ -201,7 +200,7 @@ export default class App extends Component {
     render() {
       return (
         <div className='title'>
-          ULTRA SNAKE
+          QUICK SNAKE
           <div className='game-screen'>
             {/*sets up starter coordinates of snake, as well as the block 
             representing it*/}
