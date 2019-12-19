@@ -1,0 +1,55 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+.title {
+  color: whitesmoke;
+  text-align: center;
+  padding-top: 9px;
+  font-size: 50px;
+  font-family: fantasy;
+}
+
+.game-screen {
+  position: relative;
+  margin: 5px auto;
+  width: 600px;
+  height: 600px;
+  border: 4px solid gray;
+  color: white;
+  background-color: #a5a5a5;
+}
+
+.score-board {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+          justify-content: space-evenly;
+  padding-top: 610px;
+  width: 600px;
+  font-size: 35px;
+  color: white;
+  font-family: 'montserrat';
+}
+
+.rat {
+  position: absolute;
+  width: 2%;
+  height: 2%;
+  background: #fc702f;
+  border: 1px solid black;
+  z-index: 1;
+}
+
+.rat-food {
+  position: absolute;
+  width: 2%;
+  height: 2%;
+  background: yellow;
+  z-index: 2;
+  border-radius: 15px;
+}
+
+/*# sourceMappingURL=app-86590f58887e9a00a7c6.map*/
